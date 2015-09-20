@@ -75,7 +75,7 @@ con = None
 
 ## Creates a folder for the database
 ## Set directory to YOUR computer and folder
-directoryForDB = "/Users/siying/Desktop/DBClass/"
+directoryForDB = "./"
 if not os.path.exists(directoryForDB):
 	os.makedirs(directoryForDB)
 
@@ -93,7 +93,7 @@ with con:
 	cur.execute("DROP TABLE IF EXISTS popANDdensity") 
 	cur.execute("CREATE TABLE popANDdensity(neighborhood TEXT PRIMARY KEY, pop1940 INT, pop1950 INT, pop1960 INT, pop1970 INT, pop1980 INT, pop1990 INT, pop2000 INT, pop2010 INT)")
 	for key in pop1940:
-		insertStatement = 'INSERT INTO popANDdensity VALUES (%s, %d, %d, %d, %d, %d, %d, %d, %d)' % (key, int(pop1940[key]), int(pop1950[key]), int(pop1960[key]), int(pop1970[key]), int(pop1980[key]), int(pop1990[key]), int(pop2000[key]), int(pop2010[key]))
+		insertStatement = """INSERT INTO popANDdensity(neighborhood, pop1940, pop1950, pop1960, pop1970, pop1980, pop1990, pop2000, pop2010) VALUES ('%s', %d, %d, %d, %d, %d, %d, %d, %d)""" % (key, int(pop1940[key]), int(pop1950[key]), int(pop1960[key]), int(pop1970[key]), int(pop1980[key]), int(pop1990[key]), int(pop2000[key]), int(pop2010[key]))
 		cur.execute(insertStatement)
 	## NEEDED, if not, database does not update
 	con.commit()
@@ -101,13 +101,13 @@ with con:
 ########################################
 ##### add data for employment
 ########################################	
-con = lite.connect(directoryForDB)
-with con:
+# con = lite.connect(directoryForDB)
+# with con:
 
-	cur = con.cursor()
-	cur.execute("DROP TABLE IF EXISTS popANDdensity") 
-	cur.execute("CREATE TABLE employment ADD COLUMN(jobConstruction TEXT, jobManufacturing TEXT, )")
-	print "add here"
+# 	cur = con.cursor()
+# 	cur.execute("DROP TABLE IF EXISTS popANDdensity") 
+# 	cur.execute("CREATE TABLE employment ADD COLUMN(jobConstruction TEXT, jobManufacturing TEXT, )")
+# 	print "add here"
 	######################################################
 	##### NOTE! to use double/float in sqlite, use REAL
 	######################################################	
