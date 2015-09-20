@@ -76,7 +76,7 @@ con = None
 
 ## Creates a folder for the database
 ## Set directory to YOUR computer and folder
-directoryForDB = "./"
+directoryForDB = "./DBClass/"
 if not os.path.exists(directoryForDB):
 	os.makedirs(directoryForDB)
 
@@ -92,7 +92,7 @@ with con:
 
 	cur = con.cursor()
 	cur.execute("DROP TABLE IF EXISTS popANDdensity") 
-	cur.execute("CREATE TABLE popANDdensity(neighborhood TEXT, pop1940 INT, pop1950 INT, pop1960 INT, pop1970 INT, pop1980 INT, pop1990 INT, pop2000 INT, pop2010 INT)")
+	cur.execute("CREATE TABLE popANDdensity(neighborhood TEXT PRIMARY KEY, pop1940 INT, pop1950 INT, pop1960 INT, pop1970 INT, pop1980 INT, pop1990 INT, pop2000 INT, pop2010 INT)")
 	for key in pop1940:
 		# insertStatement = 'INSERT INTO popANDdensity(neighborhood,pop1940,pop1950,pop1960,pop1970,pop1980,pop1990,pop2000,pop2010) VALUES(?,?,?,?,?,?,?,?,?)'
 		insertStatement = 'INSERT INTO popANDdensity VALUES(?,?,?,?,?,?,?,?,?)'
@@ -109,7 +109,7 @@ with con:
 	# print "add here"
 	cur = con.cursor()
 	cur.execute("DROP TABLE IF EXISTS Employment") 
-	cur.execute("CREATE TABLE Employment(neighborhood TEXT, jobConstruction REAL,jobManufacturing REAL, jobRetail REAL, jobTransportUtilities REAL, jobInformation REAL, jobFinance REAL, jobScientific REAL, jobEduHealthSoc REAL, jobArtsRecreation REAL, jobPublicAdmin REAL, jobOther REAL)")
+	cur.execute("CREATE TABLE Employment(neighborhood TEXT PRIMARY KEY, jobConstruction REAL,jobManufacturing REAL, jobRetail REAL, jobTransportUtilities REAL, jobInformation REAL, jobFinance REAL, jobScientific REAL, jobEduHealthSoc REAL, jobArtsRecreation REAL, jobPublicAdmin REAL, jobOther REAL)")
 	for key in jobConstruction:
 		employmentInsertStatement = 'INSERT INTO Employment VALUES (?,?,?,?,?,?,?,?,?,?,?,?)'
 		parms = (key, jobConstruction[key],jobManufacturing[key], jobRetail[key], jobTransportUtilities[key], jobInformation[key], jobFinance[key], jobScientific[key], jobEduHealthSoc[key], jobArtsRecreation[key], jobPublicAdmin[key], jobOther[key])
