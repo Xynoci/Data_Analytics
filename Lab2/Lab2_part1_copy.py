@@ -24,14 +24,14 @@ try:
 	reader = csv.reader(fhand)
 	next(reader, None)  # skip the headers
 	for row in reader:
-		pop1940[row[0]] = row[2].replace(',', '')
-		pop1950[row[0]] = row[3].replace(',', '')
-		pop1960[row[0]] = row[4].replace(',', '')
-		pop1970[row[0]] = row[5].replace(',', '')
-		pop1980[row[0]] = row[6].replace(',', '')
-		pop1990[row[0]] = row[7].replace(',', '')
-		pop2000[row[0]] = row[8].replace(',', '')
-		pop2010[row[0]] = row[9].replace(',', '')
+		pop1940[row[0]] = int(row[2].replace(',', ''))
+		pop1950[row[0]] = int(row[3].replace(',', ''))
+		pop1960[row[0]] = int(row[4].replace(',', ''))
+		pop1970[row[0]] = int(row[5].replace(',', ''))
+		pop1980[row[0]] = int(row[6].replace(',', ''))
+		pop1990[row[0]] = int(row[7].replace(',', ''))
+		pop2000[row[0]] = int(row[8].replace(',', ''))
+		pop2010[row[0]] = int(row[9].replace(',', ''))
 finally:
 	fhand.close()
 
@@ -94,12 +94,11 @@ with con:
 	cur.execute("DROP TABLE IF EXISTS popANDdensity") 
 	cur.execute("CREATE TABLE popANDdensity(neighborhood TEXT PRIMARY KEY, pop1940 INT, pop1950 INT, pop1960 INT, pop1970 INT, pop1980 INT, pop1990 INT, pop2000 INT, pop2010 INT)")
 	for key in pop1940:
-		# print key
-		insertStatement = "INSERT INTO popANDdensity VALUES (\'%s\', %d, %d, %d, %d, %d, %d, %d, %d)" % (key, int(pop1940[key]), int(pop1950[key]), int(pop1960[key]), int(pop1970[key]), int(pop1980[key]), int(pop1990[key]), int(pop2000[key]), int(pop2010[key]))
 		# insertStatement = 'INSERT INTO popANDdensity(neighborhood,pop1940,pop1950,pop1960,pop1970,pop1980,pop1990,pop2000,pop2010) VALUES(?,?,?,?,?,?,?,?,?)'
 		# insertStatement = 'INSERT INTO popANDdensity VALUES(?,?,?,?,?,?,?,?,?)'
 		# parms = (key,pop1940[key],pop1950[key],pop1960[key],pop1970[key],pop1980[key],pop1990[key],pop2000[key],pop2010[key])
 		# cur.execute(insertStatement, parms)
+		insertStatement = "INSERT INTO popANDdensity VALUES (\'%s\', %d, %d, %d, %d, %d, %d, %d, %d)" % (key, pop1940[key], pop1950[key], pop1960[key], pop1970[key], pop1980[key], pop1990[key], pop2000[key], pop2010[key])
 		cur.execute(insertStatement)
 	## NEEDED, if not, database does not update
 	con.commit()
