@@ -51,12 +51,18 @@ library(rpart)
 fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class")
 plot(fit)
 text(fit)
+##### install packages. 
 ## install RGtk2 failed thousand times. 
+## [solution](https://gist.github.com/sebkopf/9405675)
+## [solution](http://stackoverflow.com/questions/15868860/r-3-0-and-gtk-rgtk2-error)
+## [solution](http://rattle.togaware.com/rattle-install-troubleshooting.html)
+## And still can not install.
 # install.packages("RGtk2", depen=T, type="source")
 # install.packages('RGtk2')
 # install.packages('rattle')
 # install.packages('rpart.plot')
 # install.packages('RColorBrewer')
+library(RGtk2)
 library(rattle)
 library(rpart.plot)
 library(RColorBrewer)
@@ -72,7 +78,5 @@ Prediction <- predict(fit, test, type = "class")
 submit <- data.frame(PassengerId = test$PassengerId, Survived = Prediction)
 write.csv(submit, file = "./data/myfirstdtree.csv", row.names = FALSE)
 
-## TRY TO INSTALL RGtk2
-# install gWidgets FAILED!!!!
-# install.packages("gWidgets", depen=T)
-# install.packages("gWidgetsRGtk2", depen=T, type="source")
+
+
