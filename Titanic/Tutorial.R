@@ -1,3 +1,4 @@
+setwd('/Users/Makone_Xia/Documents/Courses/workspace/Data_Analytics/Titanic')
 train <- read.csv("./data/train.csv", stringsAsFactors=FALSE)
 test <- read.csv("./data/test.csv", stringsAsFactors=FALSE)
 
@@ -57,6 +58,7 @@ text(fit)
 ## [solution](http://stackoverflow.com/questions/15868860/r-3-0-and-gtk-rgtk2-error)
 ## [solution](http://rattle.togaware.com/rattle-install-troubleshooting.html)
 ## And still can not install.
+## update: it works.
 # install.packages("RGtk2", depen=T, type="source")
 # install.packages('RGtk2')
 # install.packages('rattle')
